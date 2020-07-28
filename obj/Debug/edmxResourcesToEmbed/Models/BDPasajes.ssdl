@@ -1,0 +1,605 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BDPasajeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Asiento">
+    <Key>
+      <PropertyRef Name="IIDASIENTO" />
+    </Key>
+    <Property Name="IIDASIENTO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IIDVIAJE" Type="int" />
+    <Property Name="INDICEFILA" Type="int" />
+    <Property Name="INDICECOLUMNA" Type="int" />
+    <Property Name="BHABILITADO" Type="int" />
+  </EntityType>
+  <EntityType Name="Bus">
+    <Key>
+      <PropertyRef Name="IIDBUS" />
+    </Key>
+    <Property Name="IIDBUS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IIDSUCURSAL" Type="int" />
+    <Property Name="IIDTIPOBUS" Type="int" />
+    <Property Name="PLACA" Type="varchar" MaxLength="100" />
+    <Property Name="FECHACOMPRA" Type="datetime" />
+    <Property Name="IIDMODELO" Type="int" />
+    <Property Name="NUMEROFILAS" Type="int" />
+    <Property Name="NUMEROCOLUMNAS" Type="int" />
+    <Property Name="BHABILITADO" Type="int" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="200" />
+    <Property Name="OBSERVACION" Type="varchar" MaxLength="200" />
+    <Property Name="IIDMARCA" Type="int" />
+  </EntityType>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="IIDCLIENTE" />
+    </Key>
+    <Property Name="IIDCLIENTE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="100" />
+    <Property Name="APPATERNO" Type="varchar" MaxLength="150" />
+    <Property Name="APMATERNO" Type="varchar" MaxLength="150" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="200" />
+    <Property Name="DIRECCION" Type="varchar" MaxLength="200" />
+    <Property Name="IIDSEXO" Type="int" />
+    <Property Name="TELEFONOFIJO" Type="varchar" MaxLength="10" />
+    <Property Name="TELEFONOCELULAR" Type="varchar" MaxLength="10" />
+    <Property Name="BHABILITADO" Type="int" />
+    <Property Name="bTieneUsuario" Type="int" />
+    <Property Name="TIPOUSUARIO" Type="char" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="DETALLEVENTA">
+    <Key>
+      <PropertyRef Name="IIDETALLEVENTA" />
+    </Key>
+    <Property Name="IIDETALLEVENTA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IIDVENTA" Type="int" />
+    <Property Name="IIDVIAJE" Type="int" />
+    <Property Name="IIDBUS" Type="int" />
+    <Property Name="PRECIO" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="BHABILITADO" Type="int" />
+  </EntityType>
+  <EntityType Name="Empleado">
+    <Key>
+      <PropertyRef Name="IIDEMPLEADO" />
+    </Key>
+    <Property Name="IIDEMPLEADO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="100" />
+    <Property Name="APPATERNO" Type="varchar" MaxLength="200" />
+    <Property Name="APMATERNO" Type="varchar" MaxLength="200" />
+    <Property Name="FECHACONTRATO" Type="datetime" />
+    <Property Name="SUELDO" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="IIDTIPOUSUARIO" Type="int" />
+    <Property Name="IIDTIPOCONTRATO" Type="int" />
+    <Property Name="IIDSEXO" Type="int" />
+    <Property Name="BHABILITADO" Type="int" />
+    <Property Name="bTieneUsuario" Type="int" />
+    <Property Name="TIPOUSUARIO" Type="char" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="Lugar">
+    <Key>
+      <PropertyRef Name="IIDLUGAR" />
+    </Key>
+    <Property Name="IIDLUGAR" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="50" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="200" />
+    <Property Name="BHABILITADO" Type="int" />
+  </EntityType>
+  <EntityType Name="Marca">
+    <Key>
+      <PropertyRef Name="IIDMARCA" />
+    </Key>
+    <Property Name="IIDMARCA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="100" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="200" />
+    <Property Name="BHABILITADO" Type="int" />
+  </EntityType>
+  <EntityType Name="Modelo">
+    <Key>
+      <PropertyRef Name="IIDMODELO" />
+    </Key>
+    <Property Name="IIDMODELO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="100" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="200" />
+    <Property Name="BHABILITADO" Type="int" />
+  </EntityType>
+  <EntityType Name="Pagina">
+    <Key>
+      <PropertyRef Name="IIDPAGINA" />
+    </Key>
+    <Property Name="IIDPAGINA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MENSAJE" Type="varchar" MaxLength="50" />
+    <Property Name="ACCION" Type="varchar" MaxLength="50" />
+    <Property Name="CONTROLADOR" Type="varchar" MaxLength="100" />
+    <Property Name="BHABILITADO" Type="int" />
+  </EntityType>
+  <EntityType Name="Rol">
+    <Key>
+      <PropertyRef Name="IIDROL" />
+    </Key>
+    <Property Name="IIDROL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="100" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="100" />
+    <Property Name="BHABILITADO" Type="int" />
+  </EntityType>
+  <EntityType Name="RolPagina">
+    <Key>
+      <PropertyRef Name="IIDROLPAGINA" />
+    </Key>
+    <Property Name="IIDROLPAGINA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IIDROL" Type="int" />
+    <Property Name="IIDPAGINA" Type="int" />
+    <Property Name="BHABILITADO" Type="int" />
+  </EntityType>
+  <EntityType Name="Sexo">
+    <Key>
+      <PropertyRef Name="IIDSEXO" />
+    </Key>
+    <Property Name="IIDSEXO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="50" />
+    <Property Name="BHABILITADO" Type="int" />
+  </EntityType>
+  <EntityType Name="Sucursal">
+    <Key>
+      <PropertyRef Name="IIDSUCURSAL" />
+    </Key>
+    <Property Name="IIDSUCURSAL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="100" />
+    <Property Name="DIRECCION" Type="varchar" MaxLength="200" />
+    <Property Name="TELEFONO" Type="varchar" MaxLength="10" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="100" />
+    <Property Name="FECHAAPERTURA" Type="datetime" />
+    <Property Name="BHABILITADO" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TipoBus">
+    <Key>
+      <PropertyRef Name="IIDTIPOBUS" />
+    </Key>
+    <Property Name="IIDTIPOBUS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="100" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="200" />
+    <Property Name="BHABILITADO" Type="int" />
+  </EntityType>
+  <EntityType Name="TipoContrato">
+    <Key>
+      <PropertyRef Name="IIDTIPOCONTRATO" />
+    </Key>
+    <Property Name="IIDTIPOCONTRATO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="150" />
+    <Property Name="BHABILITADO" Type="int" />
+  </EntityType>
+  <EntityType Name="TipoUsuario">
+    <Key>
+      <PropertyRef Name="IIDTIPOUSUARIO" />
+    </Key>
+    <Property Name="IIDTIPOUSUARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="150" />
+    <Property Name="BHABILITADO" Type="int" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="TIPOUSUARIOREGISTRO">
+    <Key>
+      <PropertyRef Name="TIPOUSUARIO" />
+    </Key>
+    <Property Name="TIPOUSUARIO" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="IIDUSUARIO" />
+    </Key>
+    <Property Name="IIDUSUARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBREUSUARIO" Type="varchar" MaxLength="100" />
+    <Property Name="CONTRA" Type="varchar" MaxLength="100" />
+    <Property Name="TIPOUSUARIO" Type="char" MaxLength="1" />
+    <Property Name="IID" Type="int" />
+    <Property Name="IIDROL" Type="int" />
+    <Property Name="bhabilitado" Type="int" />
+  </EntityType>
+  <EntityType Name="VENTA">
+    <Key>
+      <PropertyRef Name="IIDVENTA" />
+    </Key>
+    <Property Name="IIDVENTA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IIDCLIENTE" Type="int" />
+    <Property Name="TOTAL" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="FECHAVENTA" Type="datetime" />
+    <Property Name="BHABILITADO" Type="int" />
+  </EntityType>
+  <EntityType Name="Viaje">
+    <Key>
+      <PropertyRef Name="IIDVIAJE" />
+    </Key>
+    <Property Name="IIDVIAJE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IIDLUGARORIGEN" Type="int" />
+    <Property Name="IIDLUGARDESTINO" Type="int" />
+    <Property Name="PRECIO" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="FECHAVIAJE" Type="datetime" />
+    <Property Name="IIDBUS" Type="int" />
+    <Property Name="NUMEROASIENTOSDISPONIBLES" Type="int" />
+    <Property Name="BHABILITADO" Type="int" />
+    <Property Name="FOTO" Type="varbinary(max)" />
+    <Property Name="nombrefoto" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK__Asiento__IIDVIAJ__412EB0B6">
+    <End Role="Viaje" Type="Self.Viaje" Multiplicity="0..1" />
+    <End Role="Asiento" Type="Self.Asiento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Viaje">
+        <PropertyRef Name="IIDVIAJE" />
+      </Principal>
+      <Dependent Role="Asiento">
+        <PropertyRef Name="IIDVIAJE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Bus__IIDMARCA__36B12243">
+    <End Role="Marca" Type="Self.Marca" Multiplicity="0..1" />
+    <End Role="Bus" Type="Self.Bus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Marca">
+        <PropertyRef Name="IIDMARCA" />
+      </Principal>
+      <Dependent Role="Bus">
+        <PropertyRef Name="IIDMARCA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Bus__IIDMODELO__276EDEB3">
+    <End Role="Modelo" Type="Self.Modelo" Multiplicity="0..1" />
+    <End Role="Bus" Type="Self.Bus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Modelo">
+        <PropertyRef Name="IIDMODELO" />
+      </Principal>
+      <Dependent Role="Bus">
+        <PropertyRef Name="IIDMODELO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Bus__IIDSUCURSAL__25869641">
+    <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="0..1" />
+    <End Role="Bus" Type="Self.Bus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sucursal">
+        <PropertyRef Name="IIDSUCURSAL" />
+      </Principal>
+      <Dependent Role="Bus">
+        <PropertyRef Name="IIDSUCURSAL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Bus__IIDTIPOBUS__267ABA7A">
+    <End Role="TipoBus" Type="Self.TipoBus" Multiplicity="0..1" />
+    <End Role="Bus" Type="Self.Bus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoBus">
+        <PropertyRef Name="IIDTIPOBUS" />
+      </Principal>
+      <Dependent Role="Bus">
+        <PropertyRef Name="IIDTIPOBUS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Cliente__IIDSEXO__286302EC">
+    <End Role="Sexo" Type="Self.Sexo" Multiplicity="0..1" />
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sexo">
+        <PropertyRef Name="IIDSEXO" />
+      </Principal>
+      <Dependent Role="Cliente">
+        <PropertyRef Name="IIDSEXO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Cliente__TIPOUSU__04E4BC85">
+    <End Role="TIPOUSUARIOREGISTRO" Type="Self.TIPOUSUARIOREGISTRO" Multiplicity="0..1" />
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPOUSUARIOREGISTRO">
+        <PropertyRef Name="TIPOUSUARIO" />
+      </Principal>
+      <Dependent Role="Cliente">
+        <PropertyRef Name="TIPOUSUARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DETALLEVE__IIDBU__6C190EBB">
+    <End Role="Bus" Type="Self.Bus" Multiplicity="0..1" />
+    <End Role="DETALLEVENTA" Type="Self.DETALLEVENTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bus">
+        <PropertyRef Name="IIDBUS" />
+      </Principal>
+      <Dependent Role="DETALLEVENTA">
+        <PropertyRef Name="IIDBUS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DETALLEVE__IIDVE__6A30C649">
+    <End Role="VENTA" Type="Self.VENTA" Multiplicity="0..1" />
+    <End Role="DETALLEVENTA" Type="Self.DETALLEVENTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VENTA">
+        <PropertyRef Name="IIDVENTA" />
+      </Principal>
+      <Dependent Role="DETALLEVENTA">
+        <PropertyRef Name="IIDVENTA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DETALLEVE__IIDVI__6B24EA82">
+    <End Role="Viaje" Type="Self.Viaje" Multiplicity="0..1" />
+    <End Role="DETALLEVENTA" Type="Self.DETALLEVENTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Viaje">
+        <PropertyRef Name="IIDVIAJE" />
+      </Principal>
+      <Dependent Role="DETALLEVENTA">
+        <PropertyRef Name="IIDVIAJE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Empleado__IIDSEX__2B3F6F97">
+    <End Role="Sexo" Type="Self.Sexo" Multiplicity="0..1" />
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sexo">
+        <PropertyRef Name="IIDSEXO" />
+      </Principal>
+      <Dependent Role="Empleado">
+        <PropertyRef Name="IIDSEXO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Empleado__IIDTIP__29572725">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="0..1" />
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="IIDTIPOUSUARIO" />
+      </Principal>
+      <Dependent Role="Empleado">
+        <PropertyRef Name="IIDTIPOUSUARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Empleado__IIDTIP__2A4B4B5E">
+    <End Role="TipoContrato" Type="Self.TipoContrato" Multiplicity="0..1" />
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoContrato">
+        <PropertyRef Name="IIDTIPOCONTRATO" />
+      </Principal>
+      <Dependent Role="Empleado">
+        <PropertyRef Name="IIDTIPOCONTRATO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Empleado__TIPOUS__05D8E0BE">
+    <End Role="TIPOUSUARIOREGISTRO" Type="Self.TIPOUSUARIOREGISTRO" Multiplicity="0..1" />
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPOUSUARIOREGISTRO">
+        <PropertyRef Name="TIPOUSUARIO" />
+      </Principal>
+      <Dependent Role="Empleado">
+        <PropertyRef Name="TIPOUSUARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RolPagina__IIDPA__6477ECF3">
+    <End Role="Pagina" Type="Self.Pagina" Multiplicity="0..1" />
+    <End Role="RolPagina" Type="Self.RolPagina" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pagina">
+        <PropertyRef Name="IIDPAGINA" />
+      </Principal>
+      <Dependent Role="RolPagina">
+        <PropertyRef Name="IIDPAGINA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RolPagina__IIDRO__6383C8BA">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+    <End Role="RolPagina" Type="Self.RolPagina" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="IIDROL" />
+      </Principal>
+      <Dependent Role="RolPagina">
+        <PropertyRef Name="IIDROL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Usuario__IIDROL__5EBF139D">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="IIDROL" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="IIDROL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Usuario__TIPOUSU__02084FDA">
+    <End Role="TIPOUSUARIOREGISTRO" Type="Self.TIPOUSUARIOREGISTRO" Multiplicity="0..1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPOUSUARIOREGISTRO">
+        <PropertyRef Name="TIPOUSUARIO" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="TIPOUSUARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__VENTA__IIDCLIENT__6754599E">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+    <End Role="VENTA" Type="Self.VENTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="IIDCLIENTE" />
+      </Principal>
+      <Dependent Role="VENTA">
+        <PropertyRef Name="IIDCLIENTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Viaje__IIDBUS__3C69FB99">
+    <End Role="Bus" Type="Self.Bus" Multiplicity="0..1" />
+    <End Role="Viaje" Type="Self.Viaje" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bus">
+        <PropertyRef Name="IIDBUS" />
+      </Principal>
+      <Dependent Role="Viaje">
+        <PropertyRef Name="IIDBUS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Viaje__IIDLUGARD__3A81B327">
+    <End Role="Lugar" Type="Self.Lugar" Multiplicity="0..1" />
+    <End Role="Viaje" Type="Self.Viaje" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lugar">
+        <PropertyRef Name="IIDLUGAR" />
+      </Principal>
+      <Dependent Role="Viaje">
+        <PropertyRef Name="IIDLUGARDESTINO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Viaje__IIDLUGARO__398D8EEE">
+    <End Role="Lugar" Type="Self.Lugar" Multiplicity="0..1" />
+    <End Role="Viaje" Type="Self.Viaje" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lugar">
+        <PropertyRef Name="IIDLUGAR" />
+      </Principal>
+      <Dependent Role="Viaje">
+        <PropertyRef Name="IIDLUGARORIGEN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BDPasajeModelStoreContainer">
+    <EntitySet Name="Asiento" EntityType="Self.Asiento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bus" EntityType="Self.Bus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DETALLEVENTA" EntityType="Self.DETALLEVENTA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Lugar" EntityType="Self.Lugar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Marca" EntityType="Self.Marca" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Modelo" EntityType="Self.Modelo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pagina" EntityType="Self.Pagina" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RolPagina" EntityType="Self.RolPagina" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sexo" EntityType="Self.Sexo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sucursal" EntityType="Self.Sucursal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoBus" EntityType="Self.TipoBus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoContrato" EntityType="Self.TipoContrato" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIPOUSUARIOREGISTRO" EntityType="Self.TIPOUSUARIOREGISTRO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VENTA" EntityType="Self.VENTA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Viaje" EntityType="Self.Viaje" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Asiento__IIDVIAJ__412EB0B6" Association="Self.FK__Asiento__IIDVIAJ__412EB0B6">
+      <End Role="Viaje" EntitySet="Viaje" />
+      <End Role="Asiento" EntitySet="Asiento" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Bus__IIDMARCA__36B12243" Association="Self.FK__Bus__IIDMARCA__36B12243">
+      <End Role="Marca" EntitySet="Marca" />
+      <End Role="Bus" EntitySet="Bus" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Bus__IIDMODELO__276EDEB3" Association="Self.FK__Bus__IIDMODELO__276EDEB3">
+      <End Role="Modelo" EntitySet="Modelo" />
+      <End Role="Bus" EntitySet="Bus" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Bus__IIDSUCURSAL__25869641" Association="Self.FK__Bus__IIDSUCURSAL__25869641">
+      <End Role="Sucursal" EntitySet="Sucursal" />
+      <End Role="Bus" EntitySet="Bus" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Bus__IIDTIPOBUS__267ABA7A" Association="Self.FK__Bus__IIDTIPOBUS__267ABA7A">
+      <End Role="TipoBus" EntitySet="TipoBus" />
+      <End Role="Bus" EntitySet="Bus" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Cliente__IIDSEXO__286302EC" Association="Self.FK__Cliente__IIDSEXO__286302EC">
+      <End Role="Sexo" EntitySet="Sexo" />
+      <End Role="Cliente" EntitySet="Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Cliente__TIPOUSU__04E4BC85" Association="Self.FK__Cliente__TIPOUSU__04E4BC85">
+      <End Role="TIPOUSUARIOREGISTRO" EntitySet="TIPOUSUARIOREGISTRO" />
+      <End Role="Cliente" EntitySet="Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DETALLEVE__IIDBU__6C190EBB" Association="Self.FK__DETALLEVE__IIDBU__6C190EBB">
+      <End Role="Bus" EntitySet="Bus" />
+      <End Role="DETALLEVENTA" EntitySet="DETALLEVENTA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DETALLEVE__IIDVE__6A30C649" Association="Self.FK__DETALLEVE__IIDVE__6A30C649">
+      <End Role="VENTA" EntitySet="VENTA" />
+      <End Role="DETALLEVENTA" EntitySet="DETALLEVENTA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DETALLEVE__IIDVI__6B24EA82" Association="Self.FK__DETALLEVE__IIDVI__6B24EA82">
+      <End Role="Viaje" EntitySet="Viaje" />
+      <End Role="DETALLEVENTA" EntitySet="DETALLEVENTA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Empleado__IIDSEX__2B3F6F97" Association="Self.FK__Empleado__IIDSEX__2B3F6F97">
+      <End Role="Sexo" EntitySet="Sexo" />
+      <End Role="Empleado" EntitySet="Empleado" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Empleado__IIDTIP__29572725" Association="Self.FK__Empleado__IIDTIP__29572725">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Empleado" EntitySet="Empleado" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Empleado__IIDTIP__2A4B4B5E" Association="Self.FK__Empleado__IIDTIP__2A4B4B5E">
+      <End Role="TipoContrato" EntitySet="TipoContrato" />
+      <End Role="Empleado" EntitySet="Empleado" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Empleado__TIPOUS__05D8E0BE" Association="Self.FK__Empleado__TIPOUS__05D8E0BE">
+      <End Role="TIPOUSUARIOREGISTRO" EntitySet="TIPOUSUARIOREGISTRO" />
+      <End Role="Empleado" EntitySet="Empleado" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RolPagina__IIDPA__6477ECF3" Association="Self.FK__RolPagina__IIDPA__6477ECF3">
+      <End Role="Pagina" EntitySet="Pagina" />
+      <End Role="RolPagina" EntitySet="RolPagina" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RolPagina__IIDRO__6383C8BA" Association="Self.FK__RolPagina__IIDRO__6383C8BA">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="RolPagina" EntitySet="RolPagina" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Usuario__IIDROL__5EBF139D" Association="Self.FK__Usuario__IIDROL__5EBF139D">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Usuario__TIPOUSU__02084FDA" Association="Self.FK__Usuario__TIPOUSU__02084FDA">
+      <End Role="TIPOUSUARIOREGISTRO" EntitySet="TIPOUSUARIOREGISTRO" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK__VENTA__IIDCLIENT__6754599E" Association="Self.FK__VENTA__IIDCLIENT__6754599E">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="VENTA" EntitySet="VENTA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Viaje__IIDBUS__3C69FB99" Association="Self.FK__Viaje__IIDBUS__3C69FB99">
+      <End Role="Bus" EntitySet="Bus" />
+      <End Role="Viaje" EntitySet="Viaje" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Viaje__IIDLUGARD__3A81B327" Association="Self.FK__Viaje__IIDLUGARD__3A81B327">
+      <End Role="Lugar" EntitySet="Lugar" />
+      <End Role="Viaje" EntitySet="Viaje" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Viaje__IIDLUGARO__398D8EEE" Association="Self.FK__Viaje__IIDLUGARO__398D8EEE">
+      <End Role="Lugar" EntitySet="Lugar" />
+      <End Role="Viaje" EntitySet="Viaje" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

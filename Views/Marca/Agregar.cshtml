@@ -1,0 +1,53 @@
+﻿@using RazorMVC.Models
+@*Se pone solo MarcaCLS porque se va a agregar*@
+@model MarcaCLS
+@{
+    ViewBag.Title = "Agregar Marcas";
+}
+
+<h2>Agregar</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        @* Acción, controlador, método get o post
+            Cuando se va a agregar o actualizar se pone el BeginForm*@
+        @using (Html.BeginForm("Agregar", "Marca", FormMethod.Post, new { @id = "frmAgregar"}))
+        {
+            <div>
+                @Html.LabelFor(p => p.nombreMarca)
+                @* Se enlaza automáticamente con el modelo y lo que se pongo en el textbox se envía al modelo *@
+                @Html.TextBoxFor(p => p.nombreMarca, new { @class = "form-control" })
+                @Html.ValidationMessage("nombreMarca", new { @class = "text-danger" })
+                @if (Model != null && Model.mensajeError != null)
+                {
+                    @Html.Label(Model.mensajeError, new { @class = "text-danger"})
+                }
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.descripcionMarca)
+                @Html.TextBoxFor(p => p.descripcionMarca, new { @class = "form-control" })
+                @Html.ValidationMessage("descripcionMarca", new { @class = "text-danger" })
+            </div>
+            <br />
+
+            <div style="margin: auto">
+                <input type="submit" class="btn btn-primary" value="Guardar" />
+                @Html.ActionLink("Volver", "Index", "Marca", null, new { @class = "btn btn-danger" })
+            </div>
+        }
+    </div>
+</div>
+
+
+<script>
+    var frmAgregar = document.getElementById("frmAgregar");
+    frmAgregar.onsubmit = function (e)
+    {
+        e.preventDefault();
+        if (confirm("¿Deseas agregar los datos?") == 1)
+        {
+            frmAgregar.submit();
+        }
+    }
+</script>

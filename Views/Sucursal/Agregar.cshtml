@@ -1,0 +1,59 @@
+﻿@using RazorMVC.Models
+@model SucursalCLS
+@{
+    ViewBag.Title = "Agregar Sucursales";
+}
+
+<h2>Agregar</h2>
+<div class="row">
+    <div class="col-md-6">
+        @using (Html.BeginForm("Agregar", "Sucursal", FormMethod.Post, new { @id = "frmAgregar"}))
+        {
+            <div>
+                @Html.LabelFor(p => p.nombreSucursal)
+                @Html.TextBoxFor(p => p.nombreSucursal, new { @class = "form-control" })
+                @Html.ValidationMessage("nombreSucursal", new { @class = "text-danger" })
+                @if(Model != null && Model.mensajeError != null)
+                {
+                    @Html.Label(Model.mensajeError, new { @class="text-danger"})
+                }
+            </div>
+            <div>
+                @Html.LabelFor(p => p.direccionSucursal)
+                @Html.TextBoxFor(p => p.direccionSucursal, new { @class = "form-control" })
+                @Html.ValidationMessage("direccionSucursal", new { @class = "text-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(p => p.telefonoSucursal)
+                @Html.TextBoxFor(p => p.telefonoSucursal, new { @class = "form-control" })
+                @Html.ValidationMessage("telefonoSucursal", new { @class = "text-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(p => p.emailSucursal)
+                @Html.TextBoxFor(p => p.emailSucursal, new { @class = "form-control" })
+                @Html.ValidationMessage("emailSucursal", new { @class = "text-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(p => p.fechaApertura)
+                @Html.EditorFor(p => p.fechaApertura, new { htmlAttributes = new { @class="form-control" } })
+                @Html.ValidationMessage("fechaApertura", new { @class = "text-danger" })
+            </div>
+            <div style="margin:auto">
+                <input type="submit" class="btn btn-primary" value="Enviar" />
+                @Html.ActionLink("Volver", "Index", "Sucursal", null, new { @class = "btn btn-danger" })
+            </div>
+
+        }
+    </div>
+
+</div>
+
+<script>
+    var frmAgregar = document.getElementById("frmAgregar");
+    frmAgregar.onsubmit = function (e) {
+        e.preventDefault();
+        if ((confirm("¿Desea agregar los datos?")) == 1) {
+            frmAgregar.submit();
+        }
+    }
+</script>

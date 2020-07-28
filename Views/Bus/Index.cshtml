@@ -1,0 +1,76 @@
+﻿@using RazorMVC.Models
+@model List<BusCLS>
+@{
+    ViewBag.Title = "Listado Buses";
+}
+
+<h2>Listado Buses</h2>
+@Html.ActionLink("Agregar", "Agregar", "Bus", new { @class = "btn btn-primary" })
+
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <td>@Html.LabelFor(p => Model[0].idBus)</td>
+            <td>@Html.LabelFor(p => Model[0].placaBus)</td>
+            <td>@Html.LabelFor(p => Model[0].nombreModelo)</td>
+            <td>@Html.LabelFor(p => Model[0].nombreSucursal)</td>
+            <td>@Html.LabelFor(p => Model[0].nombreTipoBus)</td>
+            <td>Operaciones</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.idBus</td>
+                <td>@item.placaBus</td>
+                <td>@item.nombreModelo</td>
+                <td>@item.nombreSucursal</td>
+                <td>@item.nombreTipoBus</td>
+                <td>
+                    @Html.ActionLink(" ", "Editar", "Bus", new { id = @item.idBus }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
+                    @*@Html.ActionLink(" ", "Eliminar", "Bus", new { id = @item.idBus }, new { @class = "glyphicon glyphicon-trash btn btn-danger" })*@
+                    <button type="button" onclick="MostrarPopUp(@item.idBus)" class="glyphicon glyphicon-trash btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@using (Html.BeginForm("Eliminar", "Bus", FormMethod.Post, new { @id = "frmEliminar" }))
+{
+    @Html.Hidden("idBus")
+}
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">¿Desea eliminar este bus?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div style="padding: 1em">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" onclick="Eliminar()" class="btn btn-primary">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function MostrarPopUp(idBus) {
+        document.getElementById("idBus").value = idBus;
+    }
+
+    function Eliminar() {
+        var frmEliminar = document.getElementById("frmEliminar");
+        frmEliminar.submit();
+    }
+</script>
+

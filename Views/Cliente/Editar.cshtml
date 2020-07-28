@@ -1,0 +1,77 @@
+﻿@using RazorMVC.Models
+@model ClienteCLS
+@{
+    ViewBag.Title = "Editar clientes";
+    List<SelectListItem> listaSexo = (List<SelectListItem>)ViewBag.listaSexo;
+}
+
+<h2>Editar</h2>
+<div class="row">
+    <div class="col-md-6">
+        @using (Html.BeginForm("Editar", "Cliente", FormMethod.Post))
+        {
+            <div>
+                @Html.LabelFor(p => p.idCliente)
+                @Html.TextBoxFor(p => p.idCliente, new { @class = "form-control" , @readOnly = true})
+                @Html.ValidationMessage("idCliente", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.nombreCliente)
+                @Html.TextBoxFor(p => p.nombreCliente, new { @class = "form-control" })
+                @Html.ValidationMessage("nombreCliente", new { @class = "text-danger" })
+                @if (Model != null && Model.mensajeError != null)
+                {
+                    @Html.Label(Model.mensajeError, new { @class = "text-danger" })
+                }
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.APaterno)
+                @Html.TextBoxFor(p => p.APaterno, new { @class = "form-control" })
+                @Html.ValidationMessage("APaterno", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.AMaterno)
+                @Html.TextBoxFor(p => p.AMaterno, new { @class = "form-control" })
+                @Html.ValidationMessage("AMaterno", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.Email)
+                @Html.TextBoxFor(p => p.Email, new { @class = "form-control" })
+                @Html.ValidationMessage("Email", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.Direccion)
+                @Html.EditorFor(p => p.Direccion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("Direccion", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.IdSexo)
+                @Html.DropDownList("IdSexo", listaSexo, null, new { @class = "form-control" })
+                @Html.ValidationMessage("IdSexo", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.telefonoFijo)
+                @Html.TextBoxFor(p => p.telefonoFijo, new { @class = "form-control" })
+                @Html.ValidationMessage("telefonoFijo", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.telefonoCelular)
+                @Html.TextBoxFor(p => p.telefonoCelular, new { @class = "form-control" })
+                @Html.ValidationMessage("telefonoCelular", new { @class = "text-danger" })
+            </div>
+
+            <div style="margin:auto">
+                <input type="submit" class="btn btn-primary" value="Enviar" />
+            </div>
+        }
+    </div>
+</div>
+

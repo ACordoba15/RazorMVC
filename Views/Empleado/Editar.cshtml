@@ -1,0 +1,78 @@
+﻿@using RazorMVC.Models
+@model EmpleadoCLS
+@{
+    ViewBag.Title = "Editar";
+    List<SelectListItem> listaSexo = (List<SelectListItem>)ViewBag.listaSexo;
+    List<SelectListItem> listaContrato = (List<SelectListItem>)ViewBag.listaContrato;
+    List<SelectListItem> listaUsuario = (List<SelectListItem>)ViewBag.listaUsuario;
+}
+
+<h2>Editar</h2>
+<div class="row">
+    <div class="col-md-6">
+        @using (Html.BeginForm("Editar", "Empleado", FormMethod.Post))
+        {
+            <div>
+                @Html.LabelFor(p => p.idEmpleado)
+                @Html.TextBoxFor(p => p.idEmpleado, new { @class = "form-control" , @readOnly = true})
+                @Html.ValidationMessage("idEmpleado", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.nombreEmpleado)
+                @Html.TextBoxFor(p => p.nombreEmpleado, new { @class = "form-control" })
+                @Html.ValidationMessage("nombreEmpleado", new { @class = "text-danger" })
+                @if (Model != null && Model.mensajeError != null)
+                {
+                    @Html.Label(Model.mensajeError, new { @class = "text-danger" })
+                }
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.aPaterno)
+                @Html.TextBoxFor(p => p.aPaterno, new { @class = "form-control" })
+                @Html.ValidationMessage("aPaterno", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.aMaterno)
+                @Html.TextBoxFor(p => p.aMaterno, new { @class = "form-control" })
+                @Html.ValidationMessage("aMaterno", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.fechaContrato)
+                @Html.EditorFor(p => p.fechaContrato, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("fechaContrato", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.sueldo)
+                @Html.TextBoxFor(p => p.sueldo, new { @class = "form-control" })
+                @Html.ValidationMessage("sueldo", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.idTipoUsuario)
+                @Html.DropDownList("idTipoUsuario", listaUsuario, null, new { @class = "form-control" })
+                @Html.ValidationMessage("idTipoUsuario", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.idTipoContrato)
+                @Html.DropDownList("idTipoContrato", listaContrato, null, new { @class = "form-control" })
+                @Html.ValidationMessage("idTipoContrato", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.idTipoSexo)
+                @Html.DropDownList("idTipoSexo", listaSexo, null, new { @class = "form-control" })
+                @Html.ValidationMessage("idTipoSexo", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                <input type="submit" class="btn btn-primary" value="Editar" />
+            </div>
+        }
+    </div>
+</div>

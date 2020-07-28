@@ -1,0 +1,106 @@
+﻿@using RazorMVC.Models
+@model ClienteCLS
+@{
+    ViewBag.Title = "Agregar Clientes";
+    List<SelectListItem> listaSexo = (List<SelectListItem>)ViewBag.listaSexo;
+}
+
+<h2>Agregar</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        @using (Html.BeginForm("Agregar", "Cliente", FormMethod.Post, new { @id = "frmCliente" }))
+        {
+            <div>
+                @Html.LabelFor(p => p.nombreCliente)
+                @Html.TextBoxFor(p => p.nombreCliente, new { @class = "form-control" })
+                @Html.ValidationMessage("nombreCliente", new { @class = "text-danger" })
+                @if(Model!= null && Model.mensajeError != null)
+                {
+                    @Html.Label(Model.mensajeError, new { @class = "text-danger"})
+                }
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.APaterno)
+                @Html.TextBoxFor(p => p.APaterno, new { @class = "form-control" })
+                @Html.ValidationMessage("APaterno", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.AMaterno)
+                @Html.TextBoxFor(p => p.AMaterno, new { @class = "form-control" })
+                @Html.ValidationMessage("AMaterno", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.Email)
+                @Html.TextBoxFor(p => p.Email, new { @class = "form-control" })
+                @Html.ValidationMessage("Email", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.Direccion)
+                @Html.EditorFor(p => p.Direccion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("Direccion", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.IdSexo)
+                @Html.DropDownList("IdSexo", listaSexo, null, new { @class = "form-control" })
+                @Html.ValidationMessage("IdSexo", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.telefonoFijo)
+                @Html.TextBoxFor(p => p.telefonoFijo, new { @class = "form-control" })
+                @Html.ValidationMessage("telefonoFijo", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.telefonoCelular)
+                @Html.TextBoxFor(p => p.telefonoCelular, new { @class = "form-control" })
+                @Html.ValidationMessage("telefonoCelular", new { @class = "text-danger" })
+            </div>
+
+            @*<div style="margin:auto">
+                    <input type="submit" class="btn btn-primary" value="Enviar" />
+                </div>*@
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Guardar
+            </button>
+            @Html.ActionLink("Volver", "Index", "Cliente", null, new { @class = "btn btn-danger" });
+
+        }
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">¿Desea guardar los ccambios?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div style="padding: 1em">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" onclick="Agregar()" class="btn btn-primary">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function Agregar() {
+
+        var frmCliente = document.getElementById("frmCliente");
+        frmCliente.submit();
+    }
+</script>

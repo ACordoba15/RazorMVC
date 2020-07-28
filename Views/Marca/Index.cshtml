@@ -1,0 +1,51 @@
+﻿@using RazorMVC.Models
+@*Se pone List<MarcaCLS> porque se va a listar los datos*@
+@model List<MarcaCLS>
+@{
+    ViewBag.Title = "Listado Marca";
+}
+
+<h2>Listado Marcas</h2>
+@Html.ActionLink("Agregar", "Agregar", "Marca", null, new { @class = "btn btn-primary"})
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <td width="10%">@Html.LabelFor(p => Model[0].idMarca)</td>
+            <td width="20%">@Html.LabelFor(p => Model[0].nombreMarca)</td>
+            <td width="60%">@Html.LabelFor(p => Model[0].descripcionMarca)</td>
+            <td width="10%">Operaciones</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.idMarca</td>
+                <td>@item.nombreMarca</td>
+                <td>@item.descripcionMarca</td>
+                @* paso un parámetro, idMarca *@
+                <td>
+                    @Html.ActionLink(" ", "Editar", "Marca", new { id = @item.idMarca}, new { @class="glyphicon glyphicon-edit btn btn-primary"})
+                    @Html.ActionLink(" ", "Eliminar", "Marca", new { id = @item.idMarca}, new { @class="glyphicon glyphicon-trash btn btn-danger", @onclick = "eliminar()"})
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+
+<script>
+    function eliminar()
+    {
+        if (confirm("¿Desea eliminar el registro?") == 1) {
+            alert("Se eliminó correctamente");
+        }
+
+        else {
+            event.preventDefault();
+        }
+    }
+</script>

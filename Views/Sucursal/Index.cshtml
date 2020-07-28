@@ -1,0 +1,50 @@
+﻿@using RazorMVC.Models
+@model List<SucursalCLS>
+@{
+    ViewBag.Title = "Listado Sucursales";
+}
+
+<h2>Listado Sucursal</h2>
+@Html.ActionLink("Agregar", "Agregar", "Sucursal", null, new { @class="btn btn-primary"})
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <td>@Html.LabelFor(p => Model[0].idSucursal)</td>
+            <td>@Html.LabelFor(p => Model[0].nombreSucursal)</td>
+            <td>@Html.LabelFor(p => Model[0].telefonoSucursal)</td>
+            <td>@Html.LabelFor(p => Model[0].emailSucursal)</td>
+            <td>@Html.LabelFor(p => Model[0].fechaApertura)</td>
+            <td>Operaciones</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.idSucursal</td>
+                <td>@item.nombreSucursal</td>
+                <td>@item.telefonoSucursal</td>
+                <td>@item.emailSucursal</td>
+                <td>@item.fechaApertura</td>
+                <td>
+                    @Html.ActionLink(" ", "Editar", "Sucursal", new { id = @item.idSucursal }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
+                    @Html.ActionLink(" ", "Eliminar", "Sucursal", new { id = @item.idSucursal }, new { @class = "glyphicon glyphicon-trash btn btn-danger", @onclick = "eliminar()" })
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+<script>
+    function eliminar() {
+        if (confirm("¿Deseas eliminar esta sucursal?") == 1) {
+            alert("Se eliminó correctamente")
+        }
+
+        else {
+            event.preventDefault();
+        }
+    }
+</script>

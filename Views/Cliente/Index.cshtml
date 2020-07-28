@@ -1,0 +1,75 @@
+﻿@using RazorMVC.Models
+@model List<ClienteCLS>
+@{
+    ViewBag.Title = "Listado Clientes";
+}
+
+<h2>Listado Clientes</h2>
+@Html.ActionLink("Agregar", "Agregar", "Cliente", null, new { @class = "btn btn-primary" })
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <td>@Html.LabelFor(p => Model[0].idCliente)</td>
+            <td>@Html.LabelFor(p => Model[0].nombreCliente)</td>
+            <td>@Html.LabelFor(p => Model[0].APaterno)</td>
+            <td>@Html.LabelFor(p => Model[0].AMaterno)</td>
+            <td>@Html.LabelFor(p => Model[0].telefonoFijo)</td>
+            <td>Operaciones</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.idCliente</td>
+                <td>@item.nombreCliente</td>
+                <td>@item.APaterno</td>
+                <td>@item.AMaterno</td>
+                <td>@item.telefonoFijo</td>
+                <td>
+                    @Html.ActionLink(" ", "Editar", "Cliente", new { id = @item.idCliente }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
+                    @*@Html.ActionLink(" ", "Eliminar", "Cliente", new { id = @item.idCliente }, new { @class = "glyphicon glyphicon-trash btn btn-danger" })*@
+                    <button type="button" onclick="MostrarPopUp(@item.idCliente)" class="glyphicon glyphicon-trash btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@using (Html.BeginForm("Eliminar", "Cliente", FormMethod.Post, new { @id = "frmEliminar"}))
+{
+    @Html.Hidden("idCliente")
+}
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">¿Desea eliminar este cliente?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div style="padding: 1em">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" onclick="Eliminar()" class="btn btn-primary">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function MostrarPopUp(idCliente) {
+        document.getElementById("idCliente").value = idCliente;
+    }
+
+    function Eliminar() {
+        var frmEliminar = document.getElementById("frmEliminar");
+        frmEliminar.submit();
+    }
+</script>

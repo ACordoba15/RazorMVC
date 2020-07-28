@@ -1,0 +1,35 @@
+﻿@using RazorMVC.Models
+@model List<ViajeCLS>
+@{
+    ViewBag.Title = "Listado Viajes";
+}
+
+<h2>Listado Viajes</h2>
+@Html.ActionLink("Agregar", "Agregar", "Viaje", null, new { @class = "btn btn-primary" })
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <td>@Html.LabelFor(p => Model[0].idViaje)</td>
+            <td>@Html.LabelFor(p => Model[0].nombreBus)</td>
+            <td>@Html.LabelFor(p => Model[0].nombreLugarO)</td>
+            <td>@Html.LabelFor(p => Model[0].nombreLugarD)</td>
+            <td>Operaciones</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.idViaje</td>
+                <td>@item.nombreBus</td>
+                <td>@item.nombreLugarO</td>
+                <td>@item.nombreLugarD</td>
+                <td>
+                    @Html.ActionLink(" ", "Editar", "Viaje", new { id = @item.idViaje }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
+                    @Html.ActionLink(" ", "Eliminar", "Viaje", new { id = @item.idViaje }, new { @class = "glyphicon glyphicon-trash btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
